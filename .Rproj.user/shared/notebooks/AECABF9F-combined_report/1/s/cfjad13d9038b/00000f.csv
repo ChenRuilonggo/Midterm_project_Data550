@@ -1,0 +1,7 @@
+"0","here::i_am('combined_report.Rmd')"
+"2","here() starts at /Users/ruilongchen/Documents/r_project/datascience_toolkit/project3
+"
+"0","data_dir <- here::here(""data"") "
+"0","data <- readRDS("
+"0","  file.path(data_dir,""data_clean.rds"")"
+"0",")"

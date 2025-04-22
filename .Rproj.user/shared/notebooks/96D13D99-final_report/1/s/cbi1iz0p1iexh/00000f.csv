@@ -1,0 +1,6 @@
+"0","library(ggplot2)"
+"0","here::i_am(""report/final_report.Rmd"")"
+"2","here() starts at /Users/ruilongchen/Documents/r_project/datascience_toolkit/midterm_project
+"
+"0","position_performance = read.csv(here::here(""output/position_performance.csv""))"
+"0","position_performance"

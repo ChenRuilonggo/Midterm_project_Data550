@@ -52,17 +52,17 @@ library(ggplot2)
 ggplot(nba_data, aes(x = Pos, y = TRB)) +
   geom_boxplot(fill = "skyblue") +
   labs(title = "Total Rebounds by Position", x = "Position", y = "Total Rebounds")
-ggsave("output/Total Rebounds by Position.png", width = 8, height = 6)
+
 # ORB
 ggplot(nba_data, aes(x = Pos, y = ORB)) +
   geom_boxplot(fill = "orange") +
   labs(title = "Offensive Rebounds by Position", x = "Position", y = "Offensive Rebounds")
-ggsave("output/Offensive Rebounds by Position.png", width = 8, height = 6)
+
 # DRB
 ggplot(nba_data, aes(x = Pos, y = DRB)) +
   geom_boxplot(fill = "lightgreen") +
   labs(title = "Defensive Rebounds by Position", x = "Position", y = "Defensive Rebounds")
-ggsave("output/Defensive Rebounds by Position.png", width = 8, height = 6)
+
 # ------------------------------------------------------------
 # TASK2 Defensive Performance Analysis: Blocks and Steals 
 # --------------------------------------------------------------
@@ -93,9 +93,9 @@ print(defense_by_position)
 ggplot(nba_data, aes(x = Pos, y = BLK)) +
   geom_boxplot(fill = "lightblue") +
   labs(title = "Blocks by Position", x = "Position", y = "Blocks per Game")
-ggsave("output/Blocks by Position.png", width = 8, height = 6)
+
 # Steal by Position
 ggplot(nba_data, aes(x = Pos, y = STL)) +
   geom_boxplot(fill = "lightcoral") +
   labs(title = "Steals by Position", x = "Position", y = "Steals per Game")
-ggsave("output/Steals by Position.png", width = 8, height = 6)
+

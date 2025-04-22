@@ -1,0 +1,123 @@
+---
+title: "VRC01 Neutralization Report"
+author: "Group7"
+date: "`r Sys.Date()`"
+output: html_document
+params:
+  production: TRUE
+  cutpoint: 1
+---
+
+```{r, set-chunk-opts, echo = FALSE, eval = params$production}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+```{r, load-data}
+data_url <- "https://bit.ly/vrc01_data"
+data <- read.csv(data_url, header = TRUE)
+```
+
+# Descriptive Analysis
+
+## Tabular analysis
+
+Characteristics of the `r nrow(data)` viruses from the CATNAP database are displayed
+in the table below.
+
+```{r, table1}
+library(labelled)
+library(gtsummary)
+
+var_label(data) <- list(
+  id = "ID",
+  ab_resistance = "Antibody resistance",
+  shield_glycans = "Shield glycans",
+  region = "Region",
+  env_length = "Length of Env protein"
+)
+
+data$number_glycans <- ifelse(data$shield_glycans < 4, "< 4", ">= 4")
+
+data |>
+  select("region", "env_length", "ab_resistance", "number_glycans") |>
+  tbl_summary(by = number_glycans) |>
+  modify_spanning_header(c("stat_1", "stat_2") ~ "**PNGs in Glycan Shield**") |>
+  add_overall() |>
+  add_p()
+```
+
+## Graphical analysis
+
+Below we report a scatter plot of antibody resistance as a function of 
+number of PNGs in the glycan shield. 
+
+```{r, plot-data}
+#| fig.align = "center",
+#| out.width = "500px"
+library(ggplot2)
+
+ggplot(data, aes(x = shield_glycans, y = ab_resistance)) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  theme_bw()
+
+```
+
+# Regression Analysis
+
+## Primary model
+
+```{r, fit-primary-model}
+library(knitr)
+
+mod <- glm(
+  ab_resistance ~ shield_glycans + region + env_length,
+  data = data
+)
+
+table_data <- summary(mod)$coefficients
+
+# Round all columns to 2 decimal places
+table_data_rounded <- round(table_data, 2)
+
+# Ensure table_data_rounded is a data frame
+table_data_rounded <- as.data.frame(table_data_rounded)
+
+# Format all numeric columns to ensure two digits
+table_data_rounded[] <- lapply(table_data_rounded, function(x) format(x, nsmall = 2))
+
+# Replace p-values < 0.01 with "<0.01"
+table_data_rounded$`Pr(>|t|)` <- ifelse(as.numeric(table_data_rounded$`Pr(>|t|)`) < 0.01, "<0.01", table_data_rounded$`Pr(>|t|)`)
+
+# Replace (Intercept) with β₀
+rownames(table_data_rounded)[1] <- "$\\beta_0$"
+
+# Rename variables for better readability
+rownames(table_data_rounded)[2] <- "Shield Glycans"
+rownames(table_data_rounded)[3] <- "Region: Europe/Americas"
+rownames(table_data_rounded)[4] <- "Region: N. Africa"
+rownames(table_data_rounded)[5] <- "Region: S. Africa"
+rownames(table_data_rounded)[6] <- "Length of Env protein"
+
+# Use kable to display the table and align it to the center
+kable(table_data_rounded, caption = "Model Coefficients Summary", align = "c", format.args = list(big.mark = ","))
+```
+
+## Secondary model
+
+In this analysis, we generated a binary outcome where level 1 of the outcome
+means the antibody resistance score was greater than `r params$cutpoint`.
+
+```{r, secondary-model}
+binary_mod <- glm(
+  I(ab_resistance > params$cutpoint) ~ shield_glycans + region + env_length,
+  data = data,
+  family = binomial()
+)
+
+tbl_regression(binary_mod, exponentiate = TRUE) |>
+  add_global_p()
+```

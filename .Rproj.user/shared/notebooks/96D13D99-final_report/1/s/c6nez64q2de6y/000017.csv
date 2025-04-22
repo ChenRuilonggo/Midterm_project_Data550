@@ -1,0 +1,4 @@
+"0","library(png)"
+"0","library(grid)"
+"0","img <- png::readPNG(here::here(""output/foul_pts_plot.png""))"
+"0","grid::grid.raster(img, width = unit(0.7, ""npc""))  # npc: 70% 宽"
