@@ -1,7 +1,0 @@
-[1,"Installing 'png' ...\n"]
-[2,"trying URL 'https://cran.rstudio.com/bin/macosx/big-sur-arm64/contrib/4.4/png_0.1-8.tgz'\n"]
-[2,"Content type 'application/x-gzip' length 374517 bytes (365 KB)\n============================================="]
-[2,"=="]
-[1,"The downloaded binary packages are in\n"]
-[1,"\t/var/folders/cn/rxd02gpx085fjc2nnpn1mw9w0000gn/T//RtmpKZm8WN/downloaded_packages\n"]
-[2,"===\ndownloaded 365 KB\n\n\n\n✔ Package 'png' successfully installed.\n"]
