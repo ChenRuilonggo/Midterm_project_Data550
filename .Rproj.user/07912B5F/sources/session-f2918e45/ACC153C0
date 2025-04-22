@@ -3,7 +3,7 @@
     "path": "~/Documents/r_project/datascience_toolkit/midterm_project/Makefile",
     "project_path": "Makefile",
     "type": "makefile",
-    "hash": "0",
+    "hash": "286710332",
     "contents": "",
     "dirty": false,
     "created": 1745253675451.0,
@@ -11,14 +11,16 @@
     "relative_order": 6,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "48,14",
+        "scrollLine": "25"
     },
     "folds": "",
-    "lastKnownWriteTime": 1743183651,
+    "lastKnownWriteTime": 1745353376,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1743183651,
+    "last_content_update": 1745353376573,
     "read_only": false,
     "read_only_alternatives": []
 }
