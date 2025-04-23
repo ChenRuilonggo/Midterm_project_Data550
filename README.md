@@ -116,7 +116,7 @@ To ensure smooth collaboration, our team agrees to the following ground rules:
 ## **7. Makefile/How to Generate Report**
 1. Make sure you are in the right directory
 2. Execute 'make install' in bash
-3. Execute 'make report' to generate the final report
+3. Execute 'make report' to generate the final report. It will clean all the output first and knit the report.
 
 ## **8. Config.yml/How to Customize Report**
 1. For now, I only wrote two mode: one is "default' and one is 'test'
