@@ -113,4 +113,13 @@ To ensure smooth collaboration, our team agrees to the following ground rules:
     - The team lead is responsible for integrating all code outputs into the final report.
     - All members will review the final report before submission.
 
+## **7. Makefile/How to Generate Report**
+1. Make sure you are in the right directory
+2. Execute 'make install' in bash
+3. Execute 'make report' to generate the final report
+
+## **8. Config.yml/How to Customize Report**
+1. For now, I only wrote two mode: one is "default' and one is 'test'
+2. First, execute "export WHICH_CONFIG="default"" or "export WHICH_CONFIG="test"". If you dont do anything, it will be the default mode
+3. The default mode means use the original dataset and keep the code chunks shown in the final report.
 ---
