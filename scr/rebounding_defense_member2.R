@@ -5,7 +5,18 @@ library(here)
 library(tidyverse)
 library(ggplot2)
 library(tidyr)
-nba_data <- read.table(here("data", "nba_2025-03-07"), sep = ",", header = TRUE, quote = "\"", fill = TRUE)
+library(config)
+
+config_name <- Sys.getenv("WHICH_CONFIG")
+if (config_name == "") {
+  config_name <- "default"  
+}
+config_list <- config::get(config = config_name)
+
+# Read the dataset (assuming it's a comma-separated file without an extension)
+nba_data <- read.table(here("data", config_list$dataset), sep = ",", header = TRUE, quote = "\"", fill = TRUE)
+
+
 #------------------------------------------------------------------------
 #TASK1 Analyze total rebounds, offensive rebounds, and defensive rebounds.
 #------------------------------------------------------------------------

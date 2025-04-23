@@ -35,7 +35,7 @@ Dependency_overall =  \
   
 Dependency_ft = output/free_throw_summary.rds output/top_ft_shooters.rds output/foul_pts_plot.png
 
-Dependency_se = output/shooting efficiency.csv effective_field_goal_percentage.png output/field_goal_percentage.png output/three_point_percentage.png
+Dependency_se = output/shooting\ efficiency.csv output/effective_field_goal_percentage.png output/field_goal_percentage.png output/three_point_percentage.png
 
 Dependency_rd = output/Total\ Rebounds\ by\ Position.png output/Offensive\ Rebounds\ by\ Position.png output/Defensive\ Rebounds\ by\ Position.png output/Blocks\ by\ Position.png output/Steals\ by\ Position.png
 
@@ -65,10 +65,11 @@ $(Dependency_tc): scr/Team_contributions.R
 $(Dependency_turnover): scr/turnovers.R
 	Rscript $<
 
-
 .PHONY: report clean all
 
-report: $(REPORT_HTML)
+report: clean $(REPORT_HTML)
 
 clean:
 	rm -f $(REPORT_HTML) $(DEPENDENCIES)
+
+all: report

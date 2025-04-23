@@ -1,14 +1,21 @@
 ---
-title: "NBA DATA ANALYSIS"
-author: "Ruilong Chen"
+title: "`r paste('NBA DATA ANALYSIS (', Sys.getenv('WHICH_CONFIG', 'Default'), ')')`"
+author: "GROUP9"
 date: "`r Sys.Date()`"
 output: html_document
-params:
-  production: TRUE
-  cutpoint: 1
 ---
 
-```{r, set-chunk-opts, echo = FALSE, eval = params$production}
+```{r setup, include = FALSE}
+# read config settings
+library(config)
+config_name <- Sys.getenv("WHICH_CONFIG")
+if (config_name == "") {
+  config_name <- "default"  
+}
+config_list <- config::get(config = config_name)
+```
+
+```{r, set-chunk-opts, echo = FALSE, eval = config_list$eval}
 library(knitr)
 opts_chunk$set(
   echo = FALSE, warning = FALSE, message = FALSE
@@ -18,9 +25,10 @@ opts_chunk$set(
 ## Top Players
 ```{r,Top Players}
 library(here)
+library(knitr)
 here::i_am("report/final_report.Rmd")
 top_players = read.csv(here::here("output/top_players.csv"))
-top_players
+kable(top_players)
 
 ```
 ## Position Performance
@@ -28,7 +36,7 @@ top_players
 library(ggplot2)
 here::i_am("report/final_report.Rmd")
 position_performance = read.csv(here::here("output/position_performance.csv"))
-position_performance
+kable(position_performance)
 
 ggplot(position_performance, aes(x = reorder(Pos, -Average_PP36), y = Average_PP36, fill = Pos)) +
   geom_bar(stat = "identity") +
@@ -43,13 +51,13 @@ ggplot(position_performance, aes(x = reorder(Pos, -Average_PP36), y = Average_PP
 library(here)
 here::i_am("report/final_report.Rmd")
 free_throw_summary <- readRDS(here::here("output/free_throw_summary.rds"))
-free_throw_summary
+kable(free_throw_summary)
 ```
 
 ## Top Free Throw Shooters
 ```{r, top-ft-shooters}
 top_ft_shooters <- readRDS(here::here("output/top_ft_shooters.rds"))
-top_ft_shooters
+kable(top_ft_shooters)
 ```
 
 ## Visualization: Personal Fouls vs Points
@@ -57,7 +65,7 @@ top_ft_shooters
 library(png)
 library(grid)
 img <- png::readPNG(here::here("output/foul_pts_plot.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 # Shooting Efficiency Analysis
@@ -66,25 +74,25 @@ grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
 library(here)
 here::i_am("report/final_report.Rmd")
 summary_stats <- read.csv(here::here("output/shooting efficiency.csv"))
-summary_stats
+kable(summary_stats)
 ```
 
 ## Effective Field Goal Percentage
 ```{r, png1}
 img <- png::readPNG(here::here("output/effective_field_goal_percentage.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 ## Field Goal Percentage
 ```{r, png2}
 img <- png::readPNG(here::here("output/field_goal_percentage.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 ## Three Point Percentage
 ```{r, png3}
 img <- png::readPNG(here::here("output/three_point_percentage.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 
@@ -94,49 +102,49 @@ grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
 ## Total Rebounds by Position
 ```{r, png4}
 img <- png::readPNG(here::here("output/Total Rebounds by Position.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 ## Offensive Rebounds by Position
 ```{r, png5}
 img <- png::readPNG(here::here("output/Offensive Rebounds by Position.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 ## Defensive Rebounds by Position
 ```{r, png6}
 img <- png::readPNG(here::here("output/Defensive Rebounds by Position.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 ## Block by Position
 ```{r, png7}
 img <- png::readPNG(here::here("output/Blocks by Position.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 ## Steal by Position
 ```{r, png8}
 img <- png::readPNG(here::here("output/Steals by Position.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
 
 # Team Contribution Analysis
 ## Team Summary Stats
 ```{r, team_summary}
 team_summary_stats = read.csv(here::here("output/team_summary_stats.csv"))
-team_summary_stats
+kable(team_summary_stats)
 ```
 
 ```{r, top_scoring_teams}
 top_scoring_teams = read.csv(here::here("output/top_scoring_teams.csv"))
-top_scoring_teams
+kable(top_scoring_teams)
 ```
 
 
 ```{r, best_defense_teams}
 best_defensive_teams = read.csv(here::here("output/best_defensive_teams.csv"))
-best_defensive_teams
+kable(best_defensive_teams)
 ```
 
 
@@ -144,6 +152,5 @@ best_defensive_teams
 
 ```{r, png9}
 img <- png::readPNG(here::here("output/assists_vs_turnovers.png"))
-grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% 宽
+grid::grid.raster(img, width = unit(0.7, "npc"))  # npc: 70% wide
 ```
-"Correlation coefficient: 0.321"

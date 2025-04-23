@@ -3,7 +3,7 @@
     "path": "~/Documents/r_project/datascience_toolkit/midterm_project/report/final_report.Rmd",
     "project_path": "report/final_report.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "623259254",
     "contents": "",
     "dirty": false,
     "created": 1745254096358.0,
@@ -12,16 +12,17 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "145,63",
-        "scrollLine": "113",
-        "working_dir": "default"
+        "cursorPosition": "146,27",
+        "scrollLine": "123",
+        "working_dir": "default",
+        "last_setup_crc32": "f2918e45fd632825"
     },
     "folds": "",
-    "lastKnownWriteTime": 1745297072,
+    "lastKnownWriteTime": 1745368708,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1745297072967,
+    "last_content_update": 1745368708137,
     "read_only": false,
     "read_only_alternatives": []
 }

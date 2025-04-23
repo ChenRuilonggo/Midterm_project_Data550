@@ -1,6 +1,0 @@
-"0","library(here)"
-"0","here::i_am(""report/final_report.Rmd"")"
-"2","here() starts at /Users/ruilongchen/Documents/r_project/datascience_toolkit/midterm_project
-"
-"0","summary_stats <- read.csv(here::here(""output/shooting efficiency.csv""))"
-"0","summary_stats"

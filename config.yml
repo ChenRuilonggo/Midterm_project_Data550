@@ -1,7 +1,7 @@
-Default:
-  dataset: "nba_2025-03-07.csv"
+default:
+  dataset: "nba_2025-03-07"
   eval: false
 
-Test:
+test:
   dataset: "nba_test.csv"
   eval: true

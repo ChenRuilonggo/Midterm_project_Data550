@@ -4,9 +4,17 @@
 # Load required libraries
 library(tidyverse)
 library(here)
+library(config)
+
+config_name <- Sys.getenv("WHICH_CONFIG")
+if (config_name == "") {
+  config_name <- "default"  
+}
+config_list <- config::get(config = config_name)
 
 # Read the dataset (assuming it's a comma-separated file without an extension)
-nba_data <- read.table(here("data", "nba_2025-03-07"), sep = ",", header = TRUE, quote = "\"", fill = TRUE)
+nba_data <- read.table(here("data", config_list$dataset), sep = ",", header = TRUE, quote = "\"", fill = TRUE)
+
 
 # Clean and preprocess data (remove duplicates if any, e.g., players on multiple teams)
 nba_data <- nba_data %>% 
