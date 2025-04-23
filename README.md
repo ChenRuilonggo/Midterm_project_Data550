@@ -115,7 +115,7 @@ To ensure smooth collaboration, our team agrees to the following ground rules:
 
 ## **7. Makefile/How to Generate Report**
 1. Make sure you are in the right directory
-2. Execute 'make install' in bash
+2. Execute 'make install' in bash to sync all the packages.
 3. Execute 'make report' to generate the final report. It will clean all the output first and knit the report.
 
 ## **8. Config.yml/How to Customize Report**
